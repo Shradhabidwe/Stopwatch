@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- meta -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="stopwatch, simple stop watch, simple web,html,css,js">
+    <meta name="author" content="Shradha Bidwe">
+    
+    
+    
+    
+    <title>stopwatch</title>
+
+    <!-- my css -->
+<link rel="stylesheet" href="style.css">
+<!-- font awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+
+
+  
+</head>
+
+
+
+
+<!-- html code -->
+<body>
+
+<div class="stopwatch">
+    <h1 id="displayTime">00 : 00 : 00</h1>
+    <div class="buttons">
+        
+        <!-- <img src="./photo/stop.jpeg" alt="" onclick="watchStop()">
+        <img src="./photo/play.png" alt="" onclick="watchStrat()">
+        <img src="./photo/reload1.png" alt="" onclick="watchReset()"> -->
+
+        <i class="fa-solid fa-stop" onclick="watchStop()"></i>
+        <i class="fa-solid fa-circle-play" onclick="watchStrat()"></i>
+        
+        <i class="fa-solid fa-rotate-right" onclick="watchReset()"></i>
+       
+       
+    </div>
+</div>
+
+
+<!-- javaScript -->
+<script>
+let[seconds,minutes,hours]=[0,0,0];
+let displayTime = document.getElementById("displayTime");
+let timer = null;
+
+
+
+// conversion of  sec to min to hours
+function stopwatch(){
+    seconds++;
+    if(seconds ==60){
+        seconds = 0;
+        minutes++;
+        if(minutes == 60){
+            minutes = 0;
+            hours++;
+        }
+    }
+
+
+
+// for making teo digit num like 01,02
+
+    let h = hours <10 ? "0" + hours : hours;
+    let m = minutes <10 ? "0" + minutes : minutes;
+    let s = seconds <10 ? "0" +seconds : seconds;
+
+    displayTime.innerHTML = h +":"+ m +":"+ s;
+}
+
+
+
+// for watch start
+function watchStrat(){
+    if(timer != null){
+        clearInterval(timer);
+    }
+    timer =  setInterval(stopwatch,1000);
+}
+
+
+
+// stop watch
+
+function watchStop(){
+    clearInterval(timer);
+}
+
+
+
+// watch reset
+function watchReset(){
+    clearInterval(timer);
+    [seconds,minutes,hours]=[0,0,0];
+    displayTime.innerHTML = "00:00:00";
+}
+</script>
+
+    
+</body>
+</html>
